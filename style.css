@@ -1,0 +1,101 @@
+*{
+    margin: auto;
+    padding: auto;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+header{
+    background-color: #1E1E1E;
+}
+
+.logo{
+    width: 125px;
+}
+
+nav{
+    display: flex;
+    align-items: center;
+
+}
+
+ul li{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.catalogo{
+    display: flex;
+    color: #fff;
+}
+
+.catalogo-name{
+    color: #fff;
+}
+
+li{
+    padding-right: 1rem;
+}
+
+.buscar{
+    display: block;
+    margin: auto;
+    margin-top: 2rem;
+    width: 250px;
+    background-color: #1E1E1E;
+    border-radius: 25px;
+    height: 25px;
+}
+
+.search{
+    padding-bottom: 2rem;
+}
+
+#cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-bottom: 3rem;
+}
+
+.card{
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    width: 250px;
+}
+
+.img-prod{
+    width: 200px;
+    height: 200px;
+    object-fit: contain;
+}
+
+.card-gris{
+    background-color: #a1a0a0;
+    width: 249px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-dis{
+    color: #fff;
+}
+
+h1{
+    padding-bottom: 2rem;
+}
+
+/*.icon-2{
+    display: flex;
+
+}*/
+
+.icono{
+    position: absolute;
+}
