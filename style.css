@@ -99,3 +99,7 @@ h1{
 .icono{
     position: absolute;
 }
+
+.img-modal{
+    width: 100px;
+}

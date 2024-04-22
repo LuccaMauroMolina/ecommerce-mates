@@ -166,13 +166,14 @@ const verCarrito = () => {
         <button id='disminuir${producto.nombre}' onclick="carrito" value="disminuir">-</button>
         <button id='eliminar${producto.nombre}'>Eliminar</button>
         <p id='contador${producto.nombre}' value="${producto.cant}">${producto.cant}</p>
-        <img src="${producto.img}">
+        <img class="img-modal" src="${producto.img}">
                 `
                 modal.style.display = "block"
-        modalContent.style.background = "red"
+        modalContent.style.background = "gray"
         modalContent.style.height = "100vh"
         modalContent.style.width = "350px"
         modalContent.style.position = "absolute"
+        modalContent.style.right = "0px"
                 modalContainer.appendChild(modalContent)
                 
                 const aumentar = document.getElementById(`aumentar${producto.nombre}`);
