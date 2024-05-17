@@ -7,7 +7,9 @@
     font-style: normal;
 }
 
-header{
+
+
+/*header{
     background-color: #1E1E1E;
 }
 
@@ -19,7 +21,7 @@ nav{
     display: flex;
     align-items: center;
 
-}
+}*/
 
 ul li{
     list-style: none;
@@ -33,15 +35,15 @@ a{
     display: flex;
     color: #fff;
 }
-
+/*
 .catalogo-name{
     color: #fff;
-}
+}*/
 
 li{
     padding-right: 1rem;
 }
-
+/*
 .buscar{
     display: block;
     margin: auto;
@@ -62,6 +64,7 @@ li{
     padding-bottom: 3rem;
 }
 
+*/
 .card{
     border: 1px solid black;
     display: flex;
@@ -69,7 +72,6 @@ li{
     margin-bottom: 2rem;
     width: 250px;
 }
-
 .img-prod{
     width: 200px;
     height: 200px;
@@ -81,8 +83,14 @@ li{
     width: 249px;
     display: flex;
     flex-direction: column;
+    place-items: center;
 }
 
+.form-control{
+    width: 300px;
+}
+
+/*
 .card-dis{
     color: #fff;
 }
@@ -96,10 +104,35 @@ h1{
 
 }*/
 
-.icono{
-    position: absolute;
+.icon{
+    position: relative;
+    left: 132px;
+    top: auto;
+    right: auto;
+    bottom: 32px;
+    cursor: pointer;
 }
 
 .img-modal{
-    width: 100px;
+    width: 65px;
 }
+
+
+
+@keyframes mover {
+    0% {
+        transform: translateX(0);
+    }
+    /*50% {
+        transform: translateX(100px);
+    }*/
+    100% {
+        transform: translateX(220px);
+    }
+  }
+  
+  /* Aplicar la animación a un elemento */
+  .modal-container {
+    animation: mover 2s ease ;
+  }
+  

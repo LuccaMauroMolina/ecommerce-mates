@@ -1,57 +1,35 @@
 class Prod{
-    constructor(id,img,nombre,price,method, discount){
+    constructor(id,img,nombre,price,method, discount,){
         this.id = id;
         this.img = img; 
         this.nombre = nombre;
         this.price = price;
-        this.method = method;
-        this.discount = discount
         this.cant = 1
     }
 }
 
-const mateBl = new Prod(1,"./img/Mate-blanco.png", "Mate Imperial Blanco", 69999, "Mercado Pago",59999);
-const mateMa = new Prod(2,"./img/Mate-marron.png","Mate Imperial Marron",69999,"Mercado Pago",59999);
-const bombillaMe = new Prod(3, "./img/bombilla-metal.png","Bombilla de Metal",8000,"Mercado Pago",6500);
-const termoStanleyVe = new Prod(4, "./img/termo-stanley-verde.png","Termo Stanley Verde",90000,"Mercado Pago",75000);
-const termolar = new Prod(5, "./img/termo-termolar.png","Termo para Termolar",45999,"Mercado Pago",32500);
-const bombillaPico = new Prod(6,"./img/bombilla-pico-loro-acero.png","Bombilla Pico Loro Acero",19999,"Mercado Pago",14999);
-const bombillaComun= new Prod(7, "./img/bombilla1.png","Bombilla Metal Comun",15500,"Mercado Pago",12000);
-const mateCrocoNeg = new Prod(8, "./img/Mate-croco.png","Mate Croco Negro",56000,"Mercado Pago",44000);
-const termoStanleyRo = new Prod(9,"./img/Termo-Stanley-Rosado.png","Termo Stanley Rosado",75000,"Mercado Pago",64999)
+const mateBl = new Prod(1,"../img/Mate-blanco.png", "Mate Imperial Blanco", 69999);
+const mateMa = new Prod(2,"../img/Mate-marron.png","Mate Imperial Marron",69999);
+const bombillaMe = new Prod(3, "../img/bombilla-metal.png","Bombilla de Metal",8000);
+const termoStanleyVe = new Prod(4, "../img/termo-stanley-verde.png","Termo Stanley Verde",90000);
+const termolar = new Prod(5, "../img/termo-termolar.png","Termo para Termolar",45999);
+const bombillaPico = new Prod(6,"../img/bombilla-pico-loro-acero.png","Bombilla Pico Loro Acero",19999);
+const bombillaComun= new Prod(7, "../img/bombilla1.png","Bombilla Metal Comun",15500);
+const mateCrocoNeg = new Prod(8, "../img/Mate-croco.png","Mate Croco Negro",56000);
+const termoStanleyRo = new Prod(9,"../img/Termo-Stanley-Rosado.png","Termo Stanley Rosado",75000)
 
 
 
 const productos = [mateBl,mateMa,bombillaMe,termoStanleyVe,termolar,bombillaPico,bombillaComun,mateCrocoNeg,termoStanleyRo]
 const Card = document.getElementById("cards")
-const carrito = []
+let carrito = []
 
-
-/*function verCarrito(){
-    btnModal.addEventListener("click", () => {
-        modal.style.display = "block"
-        modalContent.style.background = "red"
-        modalContent.style.height = "100vh"
-        modalContent.style.width = "350px"
-        modalContent.style.position = "absolute"
-
-        modalContent.innerHTML = `
-        <div class="modal-content">
-        <span class="close">X</span>
-    </div>
-                                `
-        const closeCard = document.querySelector(".close")
-
-        closeCard.addEventListener("click", () => {
-            modal.style.display = "none"
-        })
-
-})
-}*/
-
+if(localStorage.getItem("carrito")){
+    carrito = JSON.parse(localStorage.getItem("carrito"))
+}
 
 function Mostrar() {
-    
+
     productos.forEach(producto => {
         const card = document.createElement("div");
         card.classList.add("producto");
@@ -61,8 +39,6 @@ function Mostrar() {
             <div class="card-gris">
             <p>${producto.nombre}</p>
             <span>$${producto.price}</span>
-            <span>${producto.method}</span>
-            <p class="card-dis">$${producto.discount}</p>
             <button id="boton${producto.nombre}">Agregar</button>
             </div>
         </div>
@@ -72,6 +48,7 @@ function Mostrar() {
         btn.addEventListener("click", () => {
             Agregar(producto.nombre);
         });
+        
     });
 }
 
@@ -87,9 +64,10 @@ function Agregar(nombre){
     }
     Total()
     Cantidad()
+    localStorage.setItem("carrito", JSON.stringify(carrito))
     Toastify({
         text: "Se agrego al carrito",
-        duration: 3000,
+        duration: 1000,
         position: "center", 
         style:{
             background: "black",
@@ -97,25 +75,29 @@ function Agregar(nombre){
         }
 
     }).showToast()
+    verCarrito()
 }
+
+
 
 function Eliminar(nombre){
     const eliminar = carrito.find(producto => producto.nombre === nombre)
     const indice = carrito.indexOf(eliminar)
     carrito.splice(indice, 1)
-    //productos.cant = 1;
+    productos.cant = 1;
     verCarrito()
     Total()
     Cantidad()
     Toastify({
         text: "Se elimino del carrito",
-        duration: 3000,
+        duration: 1000,
         position: "right",
         style:{
             background: "red",
             borderRadius: "20px", 
         }
     }).showToast()
+    localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
 
@@ -125,6 +107,7 @@ function Eliminar(nombre){
             producto.cant++
             console.log(producto)
             verCarrito();
+            Cantidad()
         }
     }
 
@@ -161,61 +144,38 @@ const verCarrito = () => {
 
         carrito.forEach((producto) => {
             modalContent.innerHTML = `
-                <h2>${producto.nombre}</h2>
-        <button id='aumentar${producto.nombre}' onclick="carrito" value="aumentar">+</button>
-        <button id='disminuir${producto.nombre}' onclick="carrito" value="disminuir">-</button>
-        <button id='eliminar${producto.nombre}'>Eliminar</button>
-        <p id='contador${producto.nombre}' value="${producto.cant}">${producto.cant}</p>
-        <img class="img-modal" src="${producto.img}">
+            <button class="close">X</button>
+            <h2>${producto.nombre}</h2>
+            <div>
+                <button id='aumentar${producto.nombre}' onclick="carrito" value="aumentar">+</button>
+                <p id='contador${producto.nombre}' value="${producto.cant}">${producto.cant}</p>
+                <button id='disminuir${producto.nombre}' onclick="carrito" value="disminuir">-</button>
+            <div/>
+            <button id='eliminar${producto.nombre}'>Eliminar</button>
+            <p>${producto.price}</p>
+            <img class="img-modal" src="${producto.img}">
+            <div class=" ">
+                <button id="comprar">Comprar<button/>
+                <span id="total"></span>
+                <button class="btn colorBoton pt-9" id="vaciarCarrito">Vaciar Carrito</button>
+            <div/>
                 `
                 modal.style.display = "block"
-        modalContent.style.background = "gray"
-        modalContent.style.height = "100vh"
-        modalContent.style.width = "350px"
-        modalContent.style.position = "absolute"
-        modalContent.style.right = "0px"
+                modalContent.style.background = "gray"
+                modalContent.style.height = "100vh"
+                modalContent.style.width = "350px"
+                modalContent.style.position = "absolute"
+                modalContent.style.right = "0px"
+
                 modalContainer.appendChild(modalContent)
+                modalContainer.classList.add("modal-item")
                 
-                const aumentar = document.getElementById(`aumentar${producto.nombre}`);
-                aumentar.addEventListener("click", () => {
-                    Sumar(producto.nombre);
-                });
-                
-                const disminuir = document.getElementById(`disminuir${producto.nombre}`);
-                disminuir.addEventListener("click", () => {
-                    Restar(producto.nombre);
-                });
-                
-                const eliminar = document.getElementById(`eliminar${producto.nombre}`)
-                eliminar.addEventListener("click", () => {
-                    Eliminar(producto.nombre);
-                })
-                
-                Total();
+                const closeCard = document.querySelector(".close")
+
+        closeCard.addEventListener("click", () => {
+            modal.style.display = "none"
         })
-    }
 
-
-//esta funcion es la correcta
-/*const verCarrito = () => {
-    
-    contenedorCarrito.innerHTML = "";
-
-    carrito.forEach((producto) => {
-        const tables = document.createElement(`table`);
-        tables.innerHTML = `
-        <h2>${producto.nombre}</h2>
-        <button id='aumentar${producto.nombre}' onclick="carrito" value="aumentar">+</button>
-        <button id='disminuir${producto.nombre}' onclick="carrito" value="disminuir">-</button>
-        <button id='eliminar${producto.nombre}'>Eliminar</button>
-        <p id='contador${producto.nombre}' value="${producto.cant}">${producto.cant}</p>
-        <img src="${producto.img}">
-
-            `                
-
-    
-            contenedorCarrito.appendChild(tables)
-            
                 const aumentar = document.getElementById(`aumentar${producto.nombre}`);
                 aumentar.addEventListener("click", () => {
                     Sumar(producto.nombre);
@@ -230,31 +190,66 @@ const verCarrito = () => {
                 eliminar.addEventListener("click", () => {
                     Eliminar(producto.nombre);
                 })
-                Total();
+                
+                const total = document.getElementById("total")
+                total.innerText = Total()
 
-})
+                const vaciar = document.getElementById("vaciarCarrito")
+                vaciar.addEventListener("click", () => {
+                    eliminarTodoElCarrito(producto.nombre)
+                })
 
-}*/
+                const comprar = document.getElementById("comprar")
+                comprar.addEventListener("click", () => {
+                    Swal.fire({
+                        title: "¿Quieres hacer la compra?",
+                        showDenyButton: true,
+                        //showCancelButton: true,
+                        confirmButtonText: "Si quiero",
+                        denyButtonText: `Aun no`
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Compra confirmada",
+                                showConfirmButton: false,
+                                timer: 1500
+                                });
+                                modalContent.remove(); // Eliminamos el elemento del carrito después de la compra confirmada
+                                eliminarTodoElCarrito();
+                                //modalContent.style.display = "none"
+                                //eliminarTodoElCarrito()
+                        } else if (result.isDenied) {
+                            Swal.fire({
+                                icon: "error",
+                                text: "compra cancelada",
+                                timer: 1500
+                                });
+                        }
+                        modalContent.style.display = "block"
+                        });
+                })
+                })
+}
 
 
-verCarrito()
-
-const total = document.getElementById("total")
+        
+        const total = document.getElementById("total")
 
 
 /*function Total(){
-    let compra = carrito.reduce((a,producto) => a + producto.price, 0 )
+    let compra = carrito.reduce((a,producto) => a.cant + producto.price, 0 )
     total.innerHTML = ` $${compra}`;
-}
-*/
+    //return compra
+}*/
+
 const Total = () => {
     let totalCompra = 0; 
     carrito.forEach(producto => {
         totalCompra += producto.price * producto.cant;
-        //+= es igual a poner totalComra = totalCompra + producto.precio * producto.cantidad 
     })
-    total.innerHTML = `$${totalCompra}`;
-    
+    return totalCompra; 
 }
 
 const mostrarCant = document.getElementById("cantidad")
@@ -265,16 +260,18 @@ const Cantidad = () => {
             cantidad += cantidades.cant
         })
     mostrarCant.innerHTML = `${cantidad}`
+    mostrarCant.style.color = "white"
 }
 
+const eliminarCero = () => {
+    const cantidadActual = mostrarCant.innerHTML
+    if(cantidadActual === "0"){
+        mostrarCant.innerHTML = ""
+    }
+}
 
+setInterval(eliminarCero)
 
-
-const vaciarCarrito = document.getElementById("vaciarCarrito");
-
-vaciarCarrito.addEventListener("click", () => {
-    eliminarTodoElCarrito();
-})
 
 function eliminarTodoElCarrito(nombre) {
     const vaciar = carrito.splice(nombre, 10000)
@@ -282,18 +279,47 @@ function eliminarTodoElCarrito(nombre) {
         verCarrito()
         let prodCero = carrito.reduce((a,b) => a - b.price, [])
         total.innerHTML = `${prodCero} `
+        mostrarCant.innerHTML = ""
     }
+    localStorage.clear()
 }
-/*
-function eliminarTodoElCarrito() {
-    carrito = [];
-    verCarrito();
-    total.innerHTML = "0";
-}*/
-
-
 
 eliminarTodoElCarrito()
 
+/*
+Modal uno de bajo del otro
+*/
+function buscador(){
+    let palabra = document.getElementById("buscar-pal").value.toLowerCase()
+    const cards = document.querySelectorAll(".producto")
+    let noDisponible = document.getElementById("no-disponible")
+    
+    cards.forEach(card => {
+        const nombreProducto = card.querySelector("p").innerText.toLowerCase()
+        const img = card.querySelector(".img-prod")
+        let indice = []
+
+        if(nombreProducto.includes(palabra)){
+            card.style.display = "block"
+            img.style.display = "block"
+        }
+        else{
+            //card.style.display = "none"
+            //noDisponible.style.display = "none"
+            card.style.display = "none"
+            img.style.display = "none"
+        }
+        
+
+    })
+    const cardsVisibles = Array.from(cards).filter(card => card.style.display !== "none")
+    if(cardsVisibles.length === 0){
+        noDisponible.innerText = "NO DISPONIBLE"
+    }else {
+        noDisponible.innerText = ""
+    }
 
 
+}
+
+document.getElementById("buscar-pal").addEventListener("keyup", buscador);

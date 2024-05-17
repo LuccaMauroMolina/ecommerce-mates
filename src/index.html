@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link href="./output.css" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Mates</title>
+</head>
+<body>
+    <header class="bg-gray-800">
+        <nav class="flex items-center">
+            <img class="w-32" src="../img/logo-mate.png" alt="">
+            <ul class="flex text-white">
+                <li> <a class="text-white" href="../pages/Mates.html">Mates</a> </li>
+                <li> <a class="text-white" href="../pages/Termos.html">Termos</a> </li>
+                <li> <a class="text-white" href="../pages/Bombillas.html">Bombillas</a> </li>
+            </ul>
+            <div>
+                <!--<svg xmlns="http://www.w3.org/2000/svg" id="carrito" class="icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>-->
+                <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer" id="carrito" class="btn-modal icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+                <span id="cantidad"></span>
+                <div id="modal" class="modal-container">
+                    <div class="modal-content">
+                        <span id="total"></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="pb-8">
+        <!--<input type="text" name="buscador" class="block m-auto py-2 pl-3 mt-8 w-64 bg-slate-900 rounded-3xl h-6" id="buscador" placeholder="Buscar">-->
+        <div>
+            <input type="search" id="buscar-pal" onkeyup="buscador()" class="form-control block m-auto mt-5 bg-slate-600 rounded-lg py-2 pl-4" placeholder="Buscar...">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /><path d="M21 21l-6 -6" /></svg>
+        <div>
+            <ul id="demo" class="list-group"></ul>
+        </div>
+    </div>
+
+    <main>
+        <h1 class="pb-8 text-4xl">Todos Los Productos:</h1>
+        <section id="cambiar">
+            <div id="cards" class="grid grid-cols-4 pb-12">
+            </div>
+            <span class="block text-center text-6xl pb-10" id="no-disponible"></span>
+        </section>
+    </main>
+
+    <!--<h2>Total:<span id="total"></span></h2>
+    <button id="carrito">ver carrito</button>-->
+
+    <!--<div id="contenedorCarrito" class="row">
+        
+    </div>-->
+    
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../index.js"></script>
+
+</body>
+</html>
