@@ -61,7 +61,7 @@ function Agregar(nombre){
     }else{
         const producto = productos.find(producto => producto.nombre === nombre)
         carrito.push(producto)
-    }
+    } 
     Total()
     Cantidad()
     localStorage.setItem("carrito", JSON.stringify(carrito))
@@ -75,9 +75,8 @@ function Agregar(nombre){
         }
 
     }).showToast()
-    verCarrito()
+    //verCarrito()
 }
-
 
 
 function Eliminar(nombre){
@@ -166,6 +165,8 @@ const verCarrito = () => {
                 modalContent.style.width = "350px"
                 modalContent.style.position = "absolute"
                 modalContent.style.right = "0px"
+                modalContent.style.top = "0"
+                //modalContent.style.bottom = "0"
 
                 modalContainer.appendChild(modalContent)
                 modalContainer.classList.add("modal-item")
@@ -232,6 +233,9 @@ const verCarrito = () => {
                 })
                 })
 }
+
+
+
 
 
         

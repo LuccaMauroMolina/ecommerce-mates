@@ -119,20 +119,3 @@ h1{
 
 
 
-@keyframes mover {
-    0% {
-        transform: translateX(0);
-    }
-    /*50% {
-        transform: translateX(100px);
-    }*/
-    100% {
-        transform: translateX(220px);
-    }
-  }
-  
-  /* Aplicar la animación a un elemento */
-  .modal-container {
-    animation: mover 2s ease ;
-  }
-  
