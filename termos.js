@@ -3,41 +3,32 @@ const Termos = [
         img: "../img/termo-stanley-verde.png",
         name: "Termo Stanley Verde",
         price: 90000,
-        method: "Mercado Pago",
-        discount: 75000
     },
     {
         img: "../img/termo-termolar.png",
         name: "Termo para Termolar",
         price: 45999,
-        method: "Mercado Pago",
-        discount: 32500
     },
     {
         img: "../img/Termo-Stanley-Rosado.png",
         name: "Mate Croco Negro",
         price: 75000,
-        method: "Mercado Pago",
-        discount: 64999
     },
 ]
 const matesProd = []
 const termos = document.getElementById("termos")
 
 function Mostrar(){
-    Termos.forEach(Termos => {
+    Termos.forEach(producto => {
         const card = document.createElement(`div`)
         card.innerHTML = `
-        <div class="cards">
-                <div class="card">
-                <img class="img-prod" src=${Termos.img}></img>
-                <div class="card-gris">
-                <p>${Termos.name}</p>
-                <span>$${Termos.price}</span>
-                <span>${Termos.method}</span>
-                <p class="card-dis">$${Termos.discount}</p>
-                </div>
-                </div>
+        <div class="card bg-neutral-300">
+            <img class="img-prod" src="${producto.img}" alt="${producto.nombre}"></img>
+            <div class="card-gris">
+            <p class="card-name">${producto.nombre}</p>
+            <span class="card-price">$${producto.price}</span>
+            <button class="btn-agregar" id="boton${producto.nombre}">Agregar</button>
+            </div>
         </div>
         `
         termos.appendChild(card)

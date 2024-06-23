@@ -3,41 +3,32 @@ const Bombilla = [
         img: "../img/bombilla-metal.png",
         name: "Bombilla de Metal",
         price: 8000,
-        method: "Mercado Pago",
-        discount: 6500
     },
     {
         img: "../img/bombilla-pico-loro-acero.png",
         name: "Mate Imperial Blanco",
         price: 19999,
-        method: "Mercado Pago",
-        discount: 14999
     },
     {
         img: "../img/bombilla1.png",
         name: "Bombilla Metal Comun",
         price: 15500,
-        method: "Mercado Pago",
-        discount: 12000
     }
 ]
 const bombillaProd = []
 const bombillas = document.getElementById("bombillas")
 
 function Mostrar(){
-    Bombilla.forEach(Bombilla => {
+    Bombilla.forEach(producto => {
         const card = document.createElement(`div`)
         card.innerHTML = `
-        <div class="cards">
-                <div class="card">
-                <img class="img-prod" src=${Bombilla.img}></img>
-                <div class="card-gris">
-                <p>${Bombilla.name}</p>
-                <span>$${Bombilla.price}</span>
-                <span>$Bombillas.method}</span>
-                <p class="card-dis">$${Bombilla.discount}</p>
-                </div>
-                </div>
+        <div class="card bg-neutral-300">
+            <img class="img-prod" src="${producto.img}" alt="${producto.nombre}"></img>
+            <div class="card-gris">
+            <p class="card-name">${producto.nombre}</p>
+            <span class="card-price">$${producto.price}</span>
+            <button class="btn-agregar" id="boton${producto.nombre}">Agregar</button>
+            </div>
         </div>
         `
         bombillas.appendChild(card)

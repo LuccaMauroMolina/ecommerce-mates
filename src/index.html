@@ -14,16 +14,23 @@
 <body>
     <header class="bg-gray-800">
         <nav class="flex items-center">
-            <img class="w-32" src="../img/logo-mate.png" alt="">
-            <ul class="flex text-white">
+
+            <img class="w-32" src="../img/logo-mate.png" alt="logo-mate">
+            <ul class="cont-menu flex text-white" id="menu">
                 <li> <a class="text-white" href="../pages/Mates.html">Mates</a> </li>
                 <li> <a class="text-white" href="../pages/Termos.html">Termos</a> </li>
                 <li> <a class="text-white" href="../pages/Bombillas.html">Bombillas</a> </li>
             </ul>
             <div>
                 <!--<svg xmlns="http://www.w3.org/2000/svg" id="carrito" class="icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>-->
-                <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer" id="carrito" class="btn-modal icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
-                <span id="cantidad"></span>
+                <div class="flex">
+                <label for="menu" class="icono-menu">
+                    <img src="../assets/menu.svg" alt="menu" id="icono-menu"/>
+                </label>
+                <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer pr-1" id="carrito" class="btn-modal icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+                <span id="cantidad" class=""></span>
+            </div>
+                    
                 <div id="modal" class="modal-container">
                     <div class="modal-content">
                         <span id="total"></span>
@@ -33,7 +40,7 @@
         </nav>
     </header>
 
-    <div class="pb-8">
+    <div class="">
         <!--<input type="text" name="buscador" class="block m-auto py-2 pl-3 mt-8 w-64 bg-slate-900 rounded-3xl h-6" id="buscador" placeholder="Buscar">-->
         <div>
             <input type="search" id="buscar-pal" onkeyup="buscador()" class="form-control block m-auto mt-5 bg-slate-600 rounded-lg py-2 pl-4" placeholder="Buscar...">
@@ -44,13 +51,37 @@
     </div>
 
     <main>
-        <h1 class="pb-8 text-4xl">Todos Los Productos:</h1>
+        <h1 class="text-4xl pl-8 pb-8">Todos Los Productos:</h1>
         <section id="cambiar">
-            <div id="cards" class="grid grid-cols-4 pb-12">
+            <div id="cards" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             </div>
-            <span class="block text-center text-6xl pb-10" id="no-disponible"></span>
+            <span class="block text-center text-6xl pb-8" id="no-disponible"></span>
         </section>
     </main>
+
+    <footer class="bg-gray-800">
+        <div class="flex-col flex sm:flex-row sm:justify-between md:flex-row md:justify-between lg:flex-row lg:justify-between">
+            <ul class="ul-footer mb-4 mt-4 flex m-auto sm:flex-col sm:m-auto">
+                <!-- Enlaces a las redes sociales -->
+                <li class="pr-0"><a href="enlace_facebook"><img src="../svg/brand-facebook.svg" alt="Facebook"></a></li>
+                <li class="pr-5 pl-5 sm:pb-5 sm:pt-5"><a href="enlace_instagram"><img src="../svg/brand-instagram.svg" alt="Instagram"></a></li>
+                <li class="pr-0"><a href="enlace_whatsapp"><img src="../svg/brand-whatsapp (1).svg" alt="WhatsApp"></a></li>
+            </ul>
+                
+            <!-- Logo con enlace a la página principal -->
+            <a href="enlace_pagina_principal"><img class="w-32" src="../img/logo-mate.png" alt="logo-mate"></a>
+            
+            <div>
+                <!-- Lista de enlaces a las secciones del sitio -->
+                <ul class="flex flex-col pt-4 sm:flex-row sm:mb-4 sm:mt-4">
+                    <li class="pr-0 text-white"><a href="enlace_mates">Mates</a></li>
+                    <li class="pr-6 pt-4 pb-4 pl-6 text-white"><a href="enlace_termos">Termos</a></li>
+                    <li class="pr-0 text-white"><a href="enlace_bombillas">Bombillas</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    
 
     <!--<h2>Total:<span id="total"></span></h2>
     <button id="carrito">ver carrito</button>-->
@@ -62,7 +93,9 @@
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../index.js"></script>
+    <script src="../index.js" type="module">
+
+    </script>
 
 </body>
 </html>

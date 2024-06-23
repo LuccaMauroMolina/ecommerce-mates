@@ -3,19 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link href="../src/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="../src/style.css">
     <title>Bombillas</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <img class="logo" src="../img/logo-mate.png" alt="">
-            <ul class="catalogo">
-                <li> <a class="catalogo-name" href="../pages/Mates.html">Mates</a> </li>
-                <li> <a class="catalogo-name" href="../pages/Termos.html">Termos</a> </li>
-                <li> <a class="catalogo-name" href="../pages/Bombillas.html">Bombillas</a> </li>
+    <header class="bg-gray-800">
+        <nav class="flex items-center">
+            <img class="w-32" src="../img/logo-mate.png" alt="logo-mate">
+            <ul class="flex text-white">
+                <li> <a class="text-white" href="../pages/Mates.html">Mates</a> </li>
+                <li> <a class="text-white" href="../pages/Termos.html">Termos</a> </li>
+                <li> <a class="text-white" href="../pages/Bombillas.html">Bombillas</a> </li>
             </ul>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+            <div>
+                <!--<svg xmlns="http://www.w3.org/2000/svg" id="carrito" class="icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>-->
+            <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer pr-1" id="carrito" class="btn-modal icon-tabler icon-tabler-shopping-cart" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /><path d="M17 17h-11v-14h-2" /><path d="M6 5l14 1l-1 7h-13" /></svg>
+                <span id="cantidad" class=""></span>
+            </div>
+                    
+                <div id="modal" class="modal-container">
+                    <div class="modal-content">
+                        <span id="total"></span>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
     <main>

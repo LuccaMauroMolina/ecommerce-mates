@@ -1,43 +1,38 @@
 const Mates = [
     {
         img: "../img/Mate-blanco.png",
-        name: "Mate Imperial Blanco",
+        nombre: "Mate Imperial Blanco",
         price: 69999,
-        method: "Mercado Pago",
-        discount: 59999
     },
     {
         img: "../img/Mate-marron.png",
-        name: "Mate Imperial Marron",
+        nombre: "Mate Imperial Marron",
         price: 69999,
-        method: "Mercado Pago",
-        discount: 59999
     },
     {
         img: "../img/Mate-croco.png",
-        name: "Mate Croco Negro",
+        nombre: "Mate Croco Negro",
         price: 56000,
-        method: "Mercado Pago",
-        discount: 44000
     }
 ]
 const matesProd = []
 const mates = document.getElementById("mates")
 
+
+
+
 function Mostrar(){
-    Mates.forEach(Mates => {
+    Mates.forEach(producto => {
         const card = document.createElement(`div`)
         card.innerHTML = `
-        <div class="cards">
-                <div class="card">
-                <img class="img-prod" src=${Mates.img}></img>
-                <div class="card-gris">
-                <p>${Mates.name}</p>
-                <span>$${Mates.price}</span>
-                <span>${Mates.method}</span>
-                <p class="card-dis">$${Mates.discount}</p>
-                </div>
-                </div>
+        <div class="card bg-neutral-300">
+            <img class="img-prod" src="${producto.img}" alt="${producto.nombre}"></img>
+            <div class="card-gris">
+            <p class="card-name">${producto.nombre}</p>
+            <span class="card-price">$${producto.price}</span>
+            <button class="btn-agregar" id="boton${producto.nombre}"  onclick='${Agregar}')">Agregar</button>
+
+            </div>
         </div>
         `
         mates.appendChild(card)

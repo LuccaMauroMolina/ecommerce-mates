@@ -1,5 +1,5 @@
 class Prod{
-    constructor(id,img,nombre,price,method, discount,){
+    constructor(id,img,nombre,price){
         this.id = id;
         this.img = img; 
         this.nombre = nombre;
@@ -7,6 +7,8 @@ class Prod{
         this.cant = 1
     }
 }
+
+
 
 const mateBl = new Prod(1,"../img/Mate-blanco.png", "Mate Imperial Blanco", 69999);
 const mateMa = new Prod(2,"../img/Mate-marron.png","Mate Imperial Marron",69999);
@@ -21,7 +23,7 @@ const termoStanleyRo = new Prod(9,"../img/Termo-Stanley-Rosado.png","Termo Stanl
 
 
 const productos = [mateBl,mateMa,bombillaMe,termoStanleyVe,termolar,bombillaPico,bombillaComun,mateCrocoNeg,termoStanleyRo]
-const Card = document.getElementById("cards")
+const cards = document.getElementById("cards")
 let carrito = []
 
 if(localStorage.getItem("carrito")){
@@ -29,21 +31,20 @@ if(localStorage.getItem("carrito")){
 }
 
 function Mostrar() {
-
     productos.forEach(producto => {
         const card = document.createElement("div");
         card.classList.add("producto");
         card.innerHTML = `
-        <div class="card">
+        <div class="card bg-neutral-300">
             <img class="img-prod" src="${producto.img}" alt="${producto.nombre}"></img>
             <div class="card-gris">
-            <p>${producto.nombre}</p>
-            <span>$${producto.price}</span>
-            <button id="boton${producto.nombre}">Agregar</button>
+            <p class="card-name">${producto.nombre}</p>
+            <span class="card-price">$${producto.price}</span>
+            <button class="btn-agregar" id="boton${producto.nombre}">Agregar</button>
             </div>
         </div>
         `;
-        Card.appendChild(card);
+        cards.appendChild(card);
         const btn = document.getElementById(`boton${producto.nombre}`);
         btn.addEventListener("click", () => {
             Agregar(producto.nombre);
@@ -68,7 +69,7 @@ function Agregar(nombre){
     Toastify({
         text: "Se agrego al carrito",
         duration: 1000,
-        position: "center", 
+        position: "right", 
         style:{
             background: "black",
             borderRadius: "20px", 
@@ -90,7 +91,7 @@ function Eliminar(nombre){
     Toastify({
         text: "Se elimino del carrito",
         duration: 1000,
-        position: "right",
+        position: "start",
         style:{
             background: "red",
             borderRadius: "20px", 
@@ -130,6 +131,8 @@ mostrarCarrito.addEventListener("click",() => {
 })
 
 
+
+
 const shop = document.querySelector(".icon")
 const modal = document.getElementById("modal")
 const modalContent = document.querySelector(".modal-content")
@@ -138,29 +141,40 @@ const btnModal = document.querySelector(".btn-modal")
 const body = document.getElementsByTagName("body")
 
 
+
+
 const verCarrito = () => {
     modalContainer.innerHTML = ""
-
-        carrito.forEach((producto) => {
+    
+    carrito.forEach((producto) => {
+        //const svg = "./svg/trash.svg"
             modalContent.innerHTML = `
             <button class="close">X</button>
-            <h2>${producto.nombre}</h2>
-            <div>
-                <button id='aumentar${producto.nombre}' onclick="carrito" value="aumentar">+</button>
-                <p id='contador${producto.nombre}' value="${producto.cant}">${producto.cant}</p>
-                <button id='disminuir${producto.nombre}' onclick="carrito" value="disminuir">-</button>
-            <div/>
-            <button id='eliminar${producto.nombre}'>Eliminar</button>
-            <p>${producto.price}</p>
-            <img class="img-modal" src="${producto.img}">
-            <div class=" ">
-                <button id="comprar">Comprar<button/>
-                <span id="total"></span>
-                <button class="btn colorBoton pt-9" id="vaciarCarrito">Vaciar Carrito</button>
-            <div/>
-                `
+<div class="pl-4">
+    <div class="modal-name">
+        <h2>${producto.nombre}</h2>
+        <button id='eliminar${producto.nombre}' class="modal-remove">Eliminar</button>
+    </div>
+    <div class="modal-cont">
+        <button id='disminuir${producto.nombre}' onclick="carrito">-</button>
+        <p id='contador${producto.nombre}' class="modal-cant" data-value="${producto.cant}">${producto.cant}</p>
+        <button id='aumentar${producto.nombre}' onclick="carrito">+</button>
+    </div>
+    <div>
+    <p class="modal-total">Total: $<span id="total"></span><p/>
+    <img class="img-modal" src="${producto.img}">
+    </div>
+    <div class="modales">
+        <button id="comprar">Comprar</button>
+        <p class="modal-total">$${producto.price}</p>
+        <button class="btn colorBoton pt-9" id="vaciarCarrito">Vaciar Carrito</button>
+    </div>
+</div>
+
+
+            `
                 modal.style.display = "block"
-                modalContent.style.background = "gray"
+                modalContent.style.background = "darkgray"
                 modalContent.style.height = "100vh"
                 modalContent.style.width = "350px"
                 modalContent.style.position = "absolute"
@@ -234,11 +248,6 @@ const verCarrito = () => {
                 })
 }
 
-
-
-
-
-        
         const total = document.getElementById("total")
 
 
@@ -290,9 +299,6 @@ function eliminarTodoElCarrito(nombre) {
 
 eliminarTodoElCarrito()
 
-/*
-Modal uno de bajo del otro
-*/
 function buscador(){
     let palabra = document.getElementById("buscar-pal").value.toLowerCase()
     const cards = document.querySelectorAll(".producto")
@@ -327,3 +333,16 @@ function buscador(){
 }
 
 document.getElementById("buscar-pal").addEventListener("keyup", buscador);
+
+
+const iconoMenu = document.querySelector("#icono-menu")
+const menu = document.querySelector("#menu")
+
+
+function Menu(){
+    iconoMenu.addEventListener("click", (e) => {
+        menu.classList.toggle('active')
+    })
+}
+
+Menu()
